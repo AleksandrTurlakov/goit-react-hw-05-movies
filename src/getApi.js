@@ -23,3 +23,10 @@ export const getMoviesCast = async id => {
   const response = await axios.get(searchQuery);
   return response.data;
 };
+
+export const getMoviesReviews = async id => {
+  const searchQuery = `${BASE_URL}/${MEDIA_TYPE}/${id}/reviews?api_key=${KEY}&language=en-US&page=1`;
+  // https://api.themoviedb.org/3/movie/{movie_id}/reviews?api_key=9305dc9ad534282c491ff880c3535cd7&language=en-US&page=1
+  const response = await axios.get(searchQuery);
+  return response.data;
+};

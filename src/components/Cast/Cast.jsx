@@ -37,7 +37,7 @@ const Cast = () => {
         {moviesCast.length === 0 && !isLoading ? (
           <h2>Sorry, there is no information here yet</h2>
         ) : (
-          moviesCast.map(({ id, profile_path, name, character }) => {
+          moviesCast.map(({ id, profile_path, name, character }) => (
             <li key={id}>
               <img
                 src={profile_path ? posterLink + profile_path : noPoster}
@@ -45,9 +45,9 @@ const Cast = () => {
                 loading="lazy"
               />
               <p>{name}</p>
-              <p>Character:{character}</p>
-            </li>;
-          })
+              <p>Character: {character}</p>
+            </li>
+          ))
         )}
       </ul>
     </main>
