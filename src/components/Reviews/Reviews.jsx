@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMoviesReviews } from '../../getApi';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { Loader } from '../../components/Loader/Loader';
 
 const Reviews = () => {
@@ -41,6 +41,7 @@ const Reviews = () => {
           ))
         )}
       </ul>
+      <Toaster />
     </main>
   );
 };

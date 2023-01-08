@@ -4,7 +4,7 @@ import { SharedLayout } from './SharedLayout/SharedLayout';
 import { GlobalStyle } from './GlobalStyle/GlobalStyle';
 
 const Home = lazy(() => import('../pages/Home/Home'));
-const Movies = lazy(() => import('../pages/Movies'));
+const Movies = lazy(() => import('../pages/Movies/Movies'));
 const MoviesDetails = lazy(() =>
   import('../pages/MoviesDetails/MoviesDetails')
 );

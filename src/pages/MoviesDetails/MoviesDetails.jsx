@@ -1,4 +1,4 @@
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { useState, useEffect, Suspense } from 'react';
 import { useParams, useLocation, Link, Outlet } from 'react-router-dom';
 import { getMoviesDetails } from '../../getApi';
@@ -68,6 +68,7 @@ const MoviesDetails = () => {
             <Link to="reviews">Reviews</Link>
           </li>
         </ul>
+        <Toaster />
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>

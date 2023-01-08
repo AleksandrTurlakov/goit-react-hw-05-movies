@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMoviesCast } from '../../getApi';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { Loader } from '../../components/Loader/Loader';
 
 const Cast = () => {
@@ -50,6 +50,7 @@ const Cast = () => {
           ))
         )}
       </ul>
+      <Toaster />
     </main>
   );
 };
