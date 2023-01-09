@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getMoviesCast } from '../../getApi';
 import toast, { Toaster } from 'react-hot-toast';
 import { Loader } from '../../components/Loader/Loader';
+import { Container, CardWrapper, Name } from './Cast.styled';
 
 const Cast = () => {
   const { id } = useParams();
@@ -28,28 +29,28 @@ const Cast = () => {
     getMovieActors();
   }, [id]);
 
-  console.log(moviesCast);
-
   return (
     <main>
       {isLoading && <Loader />}
-      <ul>
+      <Container>
         {moviesCast.length === 0 && !isLoading ? (
           <h2>Sorry, there is no information here yet</h2>
         ) : (
           moviesCast.map(({ id, profile_path, name, character }) => (
-            <li key={id}>
+            <CardWrapper key={id}>
               <img
                 src={profile_path ? posterLink + profile_path : noPoster}
                 alt={name}
                 loading="lazy"
               />
-              <p>{name}</p>
-              <p>Character: {character}</p>
-            </li>
+              <Name>{name}</Name>
+              <p>
+                <b>Character:</b> {character}
+              </p>
+            </CardWrapper>
           ))
         )}
-      </ul>
+      </Container>
       <Toaster />
     </main>
   );

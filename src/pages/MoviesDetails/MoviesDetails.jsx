@@ -1,9 +1,17 @@
 import toast, { Toaster } from 'react-hot-toast';
 import { useState, useEffect, Suspense } from 'react';
-import { useParams, useLocation, Link, Outlet } from 'react-router-dom';
+import { useParams, useLocation, Outlet } from 'react-router-dom';
 import { getMoviesDetails } from '../../getApi';
 import { Loader } from '../../components/Loader/Loader';
 import { BackLink } from '../../components/BackLink/BackLink';
+import {
+  Container,
+  CardWrapper,
+  Title,
+  Link,
+  Wrap,
+  Item,
+} from './MoviesDetails.styled';
 
 const MoviesDetails = () => {
   const { id } = useParams();
@@ -33,7 +41,6 @@ const MoviesDetails = () => {
 
   const { title, poster_path, release_date, overview, genres, vote_average } =
     moviesInfo;
-  console.log(moviesInfo);
 
   if (!title) {
     return;
@@ -43,31 +50,39 @@ const MoviesDetails = () => {
     <main>
       {isLoading && <Loader />}
       <BackLink to={backLinkHref}>Go back</BackLink>
-      <>
+      <Container>
         <img
           src={poster_path ? posterLink + poster_path : noPoster}
           alt={title}
           loading="lazy"
         />
-        <h2>
-          {title} ({release_date.slice(0, 4)})
-        </h2>
-        <p>User Score: {Math.round(vote_average * 10)}%</p>
-        <h3>Overview</h3>
-        <p>{overview}</p>
-        <h3>Genres</h3>
-        <p>{genres.map(genre => genre.name).join(', ')}</p>
-      </>
+        <CardWrapper>
+          <h2>
+            {title} ({release_date.slice(0, 4)})
+          </h2>
+          <p>
+            <b>User Score:</b> {Math.round(vote_average * 10)}%
+          </p>
+          <h3>Overview</h3>
+          <p>{overview}</p>
+          <h3>Genres</h3>
+          <p>{genres.map(genre => genre.name).join(', ')}</p>
+        </CardWrapper>
+      </Container>
       <>
-        <h2>Additional information</h2>
-        <ul>
-          <li>
-            <Link to="cast">Cast</Link>
-          </li>
-          <li>
-            <Link to="reviews">Reviews</Link>
-          </li>
-        </ul>
+        <Title>Additional information</Title>
+        <Wrap>
+          <Item>
+            <Link to="cast" state={{ from: backLinkHref }}>
+              Cast
+            </Link>
+          </Item>
+          <Item>
+            <Link to="reviews" state={{ from: backLinkHref }}>
+              Reviews
+            </Link>
+          </Item>
+        </Wrap>
         <Toaster />
         <Suspense fallback={<Loader />}>
           <Outlet />

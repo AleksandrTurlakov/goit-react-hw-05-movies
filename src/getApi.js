@@ -19,21 +19,18 @@ export const getMoviesDetails = async id => {
 
 export const getMoviesCast = async id => {
   const searchQuery = `${BASE_URL}/${MEDIA_TYPE}/${id}/credits?api_key=${KEY}&language=en-US`;
-  // https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key=9305dc9ad534282c491ff880c3535cd7&language=en-US
   const response = await axios.get(searchQuery);
   return response.data;
 };
 
 export const getMoviesReviews = async id => {
   const searchQuery = `${BASE_URL}/${MEDIA_TYPE}/${id}/reviews?api_key=${KEY}&language=en-US&page=1`;
-  // https://api.themoviedb.org/3/movie/{movie_id}/reviews?api_key=9305dc9ad534282c491ff880c3535cd7&language=en-US&page=1
   const response = await axios.get(searchQuery);
   return response.data;
 };
 
 export const getMoviesSearch = async moviesName => {
   const searchQuery = `${BASE_URL}/search/${MEDIA_TYPE}?api_key=${KEY}&language=en-US&query=${moviesName}&page=1&include_adult=false`;
-  // https://api.themoviedb.org/3/search/movie?api_key=9305dc9ad534282c491ff880c3535cd7&language=en-US&query=batman&page=1&include_adult=false
   const response = await axios.get(searchQuery);
   return response.data;
 };

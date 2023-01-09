@@ -4,10 +4,8 @@ import { Loader } from '../../components/Loader/Loader';
 import { MoviesList } from '../../components/MoviesList/MoviesList';
 
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 
 const Home = () => {
-  const location = useLocation();
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
@@ -25,13 +23,11 @@ const Home = () => {
     getMoviesGallery();
   }, []);
 
-  console.log(movies);
-
   return (
     <main>
-      <h1>Trending today</h1>
+      <h1 style={{ marginBottom: '10px' }}>Trending today</h1>
       {isLoading && <Loader />}
-      <MoviesList movies={movies} location={location} />
+      <MoviesList movies={movies} />
       <Toaster />
     </main>
   );

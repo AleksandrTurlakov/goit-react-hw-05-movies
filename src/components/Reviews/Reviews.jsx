@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getMoviesReviews } from '../../getApi';
 import toast, { Toaster } from 'react-hot-toast';
 import { Loader } from '../../components/Loader/Loader';
+import { Author, Text } from './Reviews.styled';
 
 const Reviews = () => {
   const { id } = useParams();
@@ -24,8 +25,6 @@ const Reviews = () => {
     getMovieReviews();
   }, [id]);
 
-  console.log(moviesReviews);
-
   return (
     <main>
       {isLoading && <Loader />}
@@ -35,8 +34,11 @@ const Reviews = () => {
         ) : (
           moviesReviews.map(({ id, author, content }) => (
             <li key={id}>
-              <p>Author: {author}</p>
-              <p>{content}</p>
+              <Author>
+                <b>Author:</b>
+                <span style={{ fontStyle: 'italic' }}> {author}</span>
+              </Author>
+              <Text>{content}</Text>
             </li>
           ))
         )}

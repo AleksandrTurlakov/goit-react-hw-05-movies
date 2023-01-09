@@ -1,25 +1,28 @@
 import toast, { Toaster } from 'react-hot-toast';
+import { useState } from 'react';
 import {
   SearchForm,
   SearchFormInput,
   Icon,
   SearchFormButton,
 } from './SearchBox.styled';
+import PropTypes from 'prop-types';
 
-export const SearchBox = ({ onSubmit, moviesName }) => {
+export const SearchBox = ({ onSubmit }) => {
+  const [moviesName, setMoviesName] = useState('');
+
+  const handleMoviesNameChange = e => {
+    setMoviesName(e.currentTarget.value.toLowerCase());
+  };
+
   const handleSubmit = e => {
     e.preventDefault();
-    const moviesSearchName = e.currentTarget.moviesName.value
-      .toLowerCase()
-      .trim();
-    console.log(moviesSearchName);
-
-    if (moviesSearchName === '') {
+    if (moviesName.trim() === '') {
       toast.error('Enter text in the search box! 👀');
       return;
     }
-    onSubmit(moviesSearchName);
-    e.currentTarget.reset();
+    onSubmit(moviesName);
+    setMoviesName('');
   };
 
   return (
@@ -27,8 +30,8 @@ export const SearchBox = ({ onSubmit, moviesName }) => {
       <SearchFormInput
         type="text"
         name="moviesName"
-        defaultValue={moviesName}
-        // onChange={handleMoviesNameChange}
+        value={moviesName}
+        onChange={handleMoviesNameChange}
         placeholder="Search movies"
       />
       <SearchFormButton type="submit">
@@ -37,4 +40,8 @@ export const SearchBox = ({ onSubmit, moviesName }) => {
       <Toaster />
     </SearchForm>
   );
+};
+
+SearchBox.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };

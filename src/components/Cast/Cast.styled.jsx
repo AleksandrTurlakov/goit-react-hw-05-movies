@@ -1,22 +1,18 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fit, 200px);
   gap: 16px;
   justify-content: space-evenly;
 `;
 
-export const CardWrapper = styled.div`
+export const CardWrapper = styled.li`
   border: 1px solid black;
   border-radius: 4px;
-
-  > a {
-    text-decoration: none;
-  }
 `;
 
-export const MovieName = styled.h3`
+export const Name = styled.h3`
   padding: 4px;
   margin-top: 8px;
   margin-bottom: 0;

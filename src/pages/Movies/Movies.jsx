@@ -1,15 +1,14 @@
 import { getMoviesSearch } from '../../getApi';
 import { SearchBox } from '../../components/SearchBox/SearchBox';
 import { useState, useEffect } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
-import { useSearchParams, useLocation } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { useSearchParams } from 'react-router-dom';
 import { Loader } from '../../components/Loader/Loader';
 import { MoviesList } from '../../components/MoviesList/MoviesList';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('query') ?? '';
 
@@ -37,8 +36,7 @@ const Movies = () => {
     <main>
       <SearchBox onSubmit={onSubmit} moviesName={searchQuery} />
       {isLoading && <Loader />}
-      <MoviesList movies={movies} location={location} />
-      <Toaster />
+      <MoviesList movies={movies} />
     </main>
   );
 };
