@@ -1,7 +1,7 @@
 import toast, { Toaster } from 'react-hot-toast';
 import { useState, useEffect, Suspense } from 'react';
 import { useParams, useLocation, Outlet } from 'react-router-dom';
-import { getMoviesDetails } from '../../getApi';
+import { getMoviesDetails, posterLink, noPosterFilm } from '../../getApi';
 import { Loader } from '../../components/Loader/Loader';
 import { BackLink } from '../../components/BackLink/BackLink';
 import {
@@ -19,10 +19,6 @@ const MoviesDetails = () => {
   const backLinkHref = location.state?.from ?? '/';
   const [moviesInfo, setMoviesInfo] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-
-  const posterLink = 'https://image.tmdb.org/t/p/w300';
-  const noPoster =
-    'https://www.csaff.org/wp-content/uploads/csaff-no-poster.jpg';
 
   useEffect(() => {
     async function getMovie() {
@@ -52,7 +48,7 @@ const MoviesDetails = () => {
       <BackLink to={backLinkHref}>Go back</BackLink>
       <Container>
         <img
-          src={poster_path ? posterLink + poster_path : noPoster}
+          src={poster_path ? posterLink + poster_path : noPosterFilm}
           alt={title}
           loading="lazy"
         />

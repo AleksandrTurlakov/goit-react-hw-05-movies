@@ -1,12 +1,10 @@
 import { Container, CardWrapper, MovieName } from './MoviesList.styled';
 import { Link, useLocation } from 'react-router-dom';
+import { posterLink, noPosterFilm } from '../../getApi';
 import PropTypes from 'prop-types';
 
 export const MoviesList = ({ movies }) => {
   const location = useLocation();
-  const posterLink = 'https://image.tmdb.org/t/p/w300';
-  const noPoster =
-    'https://www.csaff.org/wp-content/uploads/csaff-no-poster.jpg';
 
   return (
     <main>
@@ -16,7 +14,9 @@ export const MoviesList = ({ movies }) => {
             <Link to={`/movies/${movie.id}`} state={{ from: location }}>
               <img
                 src={
-                  movie.poster_path ? posterLink + movie.poster_path : noPoster
+                  movie.poster_path
+                    ? posterLink + movie.poster_path
+                    : noPosterFilm
                 }
                 alt={movie.title}
                 loading="lazy"

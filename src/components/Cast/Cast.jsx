@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getMoviesCast } from '../../getApi';
+import { getMoviesCast, posterLink, noPoster } from '../../getApi';
 import toast, { Toaster } from 'react-hot-toast';
 import { Loader } from '../../components/Loader/Loader';
 import { Container, CardWrapper, Name } from './Cast.styled';
@@ -9,10 +9,6 @@ const Cast = () => {
   const { id } = useParams();
   const [moviesCast, setMoviesCast] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  const posterLink = 'https://image.tmdb.org/t/p/w300';
-  const noPoster =
-    'https://banffventureforum.com/wp-content/uploads/2019/08/No-Image.png';
 
   useEffect(() => {
     async function getMovieActors() {
